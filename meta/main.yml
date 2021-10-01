@@ -4,6 +4,8 @@ galaxy_info:
   company: Uplight, Inc.
   license: GPLv2
   min_ansible_version: 2.10.5
+  role_name: mpd
+  namespace: kso512
   platforms:
     - name: Debian
       versions:
