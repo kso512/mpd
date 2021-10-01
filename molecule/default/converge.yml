@@ -5,3 +5,4 @@
     - name: "Include mpd"
       include_role:
         name: "mpd"
+...
