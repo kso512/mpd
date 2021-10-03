@@ -17,6 +17,7 @@ All tasks are tagged with `mpd`.
 The following distributions have been tested automatically and continuously integrated:
 
 - [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
+- [Debian 11 "Bullseye"](https://www.debian.org/releases/bullseye/)
 
 ...using the following technologies:
 
@@ -28,7 +29,7 @@ The following distributions have been tested automatically and continuously inte
 
 | Role Version | MPD Version |
 | ------------ | ----------- |
-| 1.0.0  | 0.22.11 |
+| 1.0.0-1.0.1  | 0.22.11 |
 
 ## Requirements
 
@@ -61,12 +62,12 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_playlist_directory | Folder to store playlists in | `"{{ mpd_home }}/playlist"` |
 | mpd_port | TCP port to bind the control interface to | `"6600"` |
 | mpd_ratings_file | Full path name of the MPD ratings file | `"{{ mpd_home }}/ratings.db"` |
-| mpd_shortname | Short name of the MPD archive | `"mpd-0.22.10"` |
+| mpd_shortname | Short name of the MPD archive | `"mpd-0.22.11"` |
 | mpd_src | Directory to unarchive the source code in | `"{{ mpd_src_base }}/{{ mpd_shortname }}"` |
 | mpd_src_base | Directory to place the source code archive in | `"{{ mpd_home }}/src"` |
 | mpd_state_file | Full path name of the MPD state file | `"{{ mpd_home }}/state"` |
 | mpd_sticker_file | Full path name of the MPD sticker file | `"{{ mpd_home }}/sticker.sql"` |
-| mpd_systemd_service_dest | Full path name of the MPD systemd service unit file | `"/usr/local/lib/systemd/system/mpd.service"` |
+| mpd_systemd_service_dest | Full path name of the MPD systemd service unit file | `"/etc/systemd/system/mpd.service"` |
 | mpd_systemd_service_group | Group of the user that will own the systemd unit file | `"root"` |
 | mpd_systemd_service_owner | Name of the user that will own the systemd unit file | `"root"` |
 | mpd_systemd_service_mode | File mode settings of the systemd unit file | `"0644"` |

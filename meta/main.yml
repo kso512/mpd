@@ -9,6 +9,7 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
+        - bullseye
         - buster
   galaxy_tags:
     - mpd
