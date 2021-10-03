@@ -1,2 +1,112 @@
 ---
 # tasks file for mpd
+- name: Make group for Music Player Daemon user | GROUP
+  ansible.builtin.group:
+    name: "{{ mpd_group }}"
+    state: present
+  tags:
+    - mpd
+- name: Make user for Music Player Daemon | USER
+  ansible.builtin.user:
+    name: "{{ mpd_user }}"
+    group: "{{ mpd_group }}"
+    home: "{{ mpd_home }}"
+    comment: "{{ mpd_comment }}"
+  tags:
+    - mpd
+- name: Create needed directories | FILE
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ mpd_user }}"
+    group: "{{ mpd_group }}"
+    state: directory
+    mode: "{{ mpd_mode }}"
+  with_items:
+    - "{{ mpd_src_base }}"
+    - "{{ mpd_music_directory }}"
+    - "{{ mpd_playlist_directory }}"
+  tags:
+    - mpd
+- name: Install pre-requisites | APT
+  ansible.builtin.apt:
+    name: "{{ mpd_apt_prereqs }}"
+    cache_valid_time: 3600
+    state: present
+  tags:
+    - mpd
+- name: Download and extract tar package | UNARCHIVE
+  ansible.builtin.unarchive:
+    remote_src: yes
+    dest: "{{ mpd_src_base }}"
+    owner: "{{ mpd_user }}"
+    group: "{{ mpd_group }}"
+    src: "{{ mpd_url }}"
+    creates: "{{ mpd_src }}"
+  tags:
+    - mpd
+- name: Configure source before compiling | COMMAND
+  ansible.builtin.command: "meson . output/release --buildtype=debugoptimized -Db_ndebug=true"
+  args:
+    chdir: "{{ mpd_src }}"
+    creates: "{{ mpd_configure_creates }}"
+  become_user: "{{ mpd_user }}"
+  become: yes
+  tags:
+    - mpd
+- name: Compile the source | COMMAND
+  ansible.builtin.command: "ninja -C output/release"
+  args:
+    chdir: "{{ mpd_src }}"
+    creates: "{{ mpd_compile_creates }}"
+  become_user: "{{ mpd_user }}"
+  become: yes
+  notify: Install the compiled source | COMMAND
+  tags:
+    - mpd
+- name: Generate MPD configuration file | TEMPLATE
+  ansible.builtin.template:
+    dest: "{{ mpd_conf }}"
+    owner: "{{ mpd_user }}"
+    group: "{{ mpd_group }}"
+    mode: "{{ mpd_conf_mode }}"
+    src: "{{ mpd_conf_src }}"
+  notify: Restart the Music Player Daemon service | SERVICE
+  tags:
+    - mpd
+- name: Generate systemd service configuration file | TEMPLATE
+  ansible.builtin.template:
+    dest: "{{ mpd_systemd_service_dest }}"
+    group: "{{ mpd_systemd_service_group }}"
+    owner: "{{ mpd_systemd_service_owner }}"
+    mode: "{{ mpd_systemd_service_mode }}"
+    src: "{{ mpd_systemd_service_src }}"
+  when: ansible_service_mgr == "systemd"
+  register: systemd_service_template_output
+  notify: 
+    - Validate systemd configuration files | COMMAND
+    - Reload systemd configuration files | SYSTEMD
+    - Restart the Music Player Daemon service | SERVICE
+  tags:
+    - mpd
+- name: Enable the Music Player Daemon service on next boot | COMMAND
+  ansible.builtin.systemd:
+    enabled: yes
+    name: mpd
+  tags:
+    - mpd
+- name: Touch some needed files | TOUCH
+  file:
+    path: "{{ item }}"
+    owner: "{{ mpd_user }}"
+    group: "{{ mpd_group }}"
+    state: touch
+    mode: 0755
+  with_items:
+    - "{{ mpd_db_file }}"
+    - "{{ mpd_pid_file }}"
+    - "{{ mpd_ratings_file }}"
+    - "{{ mpd_state_file }}"
+  changed_when: False
+  tags:
+    - mpd
+...
