@@ -1,2 +1,25 @@
 ---
 # handlers file for mpd
+- name: Install the compiled source | COMMAND
+  ansible.builtin.command: "ninja -C output/release install"
+  args:
+    chdir: "{{ mpd_src }}"
+  tags:
+    - mpd
+- name: Validate systemd configuration files | COMMAND
+  command: "systemd-analyze verify {{ mpd_systemd_service_dest }}"
+  when: systemd_service_template_output.changed
+  tags:
+    - mpd
+- name: Reload systemd configuration files | SYSTEMD
+  systemd:
+    daemon_reload: yes
+  tags:
+    - mpd
+- name: Restart the Music Player Daemon service | SERVICE
+  ansible.builtin.service:
+    name: mpd
+    state: restarted
+  tags:
+    - mpd
+...
