@@ -27,10 +27,16 @@
     - "{{ mpd_playlist_directory }}"
   tags:
     - mpd
-- name: Install pre-requisites | APT
+- name: Install APT pre-requisites | APT
   ansible.builtin.apt:
     name: "{{ mpd_apt_prereqs }}"
     cache_valid_time: 3600
+    state: present
+  tags:
+    - mpd
+- name: Install PIP pre-requisites | PIP
+  ansible.builtin.pip:
+    name: "{{ mpd_pip_prereqs }}"
     state: present
   tags:
     - mpd

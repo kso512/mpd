@@ -30,6 +30,7 @@ The following distributions have been tested automatically and continuously inte
 | Role Version | MPD Version |
 | ------------ | ----------- |
 | 1.0.0-1.0.1  | 0.22.11 |
+| 1.0.2 | 0.23 |
 
 ## Requirements
 
@@ -59,10 +60,11 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_mode | File mode settings of the MPD source, music, and playlist folders | `"0755"` |
 | mpd_music_directory | Folder to store music in | `"{{ mpd_home }}/music"` |
 | mpd_pid_file | Full path name of the MPD PID file | `"{{ mpd_home }}/pid"` |
+| mpd_pip_prereqs | List of PIP packages to install | `"meson>0.56.0"` |
 | mpd_playlist_directory | Folder to store playlists in | `"{{ mpd_home }}/playlist"` |
 | mpd_port | TCP port to bind the control interface to | `"6600"` |
 | mpd_ratings_file | Full path name of the MPD ratings file | `"{{ mpd_home }}/ratings.db"` |
-| mpd_shortname | Short name of the MPD archive | `"mpd-0.22.11"` |
+| mpd_shortname | Short name of the MPD archive | `"mpd-0.23"` |
 | mpd_src | Directory to unarchive the source code in | `"{{ mpd_src_base }}/{{ mpd_shortname }}"` |
 | mpd_src_base | Directory to place the source code archive in | `"{{ mpd_home }}/src"` |
 | mpd_state_file | Full path name of the MPD state file | `"{{ mpd_home }}/state"` |
@@ -73,7 +75,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_systemd_service_mode | File mode settings of the systemd unit file | `"0644"` |
 | mpd_systemd_service_src | Relative or full path name of the MPD systemd service unit file source | `"systemd.mpd.service.j2"` |
 | mpd_url | Full URL to download the source code archive | `"{{ mpd_url_base }}/{{ mpd_filename }}"` |
-| mpd_url_base | Base of the URL to download the source code archive | `"http://www.musicpd.org/download/mpd/0.22"` |
+| mpd_url_base | Base of the URL to download the source code archive | `"http://www.musicpd.org/download/mpd/0.23"` |
 | mpd_user | Name of the user that will own the daemon process | `"mpd"` |
 
 ### NOTE A
@@ -101,6 +103,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 - libfaad-dev
 - libflac-dev
 - libfluidsynth-dev
+- libfmt-dev
 - libgcrypt20-dev
 - libgme-dev
 - libgtest-dev
@@ -144,7 +147,6 @@ The default values shown below should work "out-of-the-box" and only need custom
 - libwrap0-dev
 - libyajl-dev
 - libzzip-dev
-- meson
 - ninja-build
 - python3
 - python3-pip
