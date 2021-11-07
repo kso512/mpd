@@ -31,6 +31,7 @@ The following distributions have been tested automatically and continuously inte
 | ------------ | ----------- |
 | 1.0.0-1.0.1  | 0.22.11 |
 | 1.0.2 | 0.23 |
+| 1.0.3 | 0.23.3 |
 
 ## Requirements
 
@@ -64,7 +65,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_playlist_directory | Folder to store playlists in | `"{{ mpd_home }}/playlist"` |
 | mpd_port | TCP port to bind the control interface to | `"6600"` |
 | mpd_ratings_file | Full path name of the MPD ratings file | `"{{ mpd_home }}/ratings.db"` |
-| mpd_shortname | Short name of the MPD archive | `"mpd-0.23"` |
+| mpd_shortname | Short name of the MPD archive | `"mpd-0.23.3"` |
 | mpd_src | Directory to unarchive the source code in | `"{{ mpd_src_base }}/{{ mpd_shortname }}"` |
 | mpd_src_base | Directory to place the source code archive in | `"{{ mpd_home }}/src"` |
 | mpd_state_file | Full path name of the MPD state file | `"{{ mpd_home }}/state"` |
