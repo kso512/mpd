@@ -56,7 +56,7 @@
     chdir: "{{ mpd_src }}"
     creates: "{{ mpd_configure_creates }}"
   become_user: "{{ mpd_user }}"
-  become: yes
+  become: true
   tags:
     - mpd
 - name: Compile the source | COMMAND
@@ -65,7 +65,7 @@
     chdir: "{{ mpd_src }}"
     creates: "{{ mpd_compile_creates }}"
   become_user: "{{ mpd_user }}"
-  become: yes
+  become: true
   notify: Install the compiled source | COMMAND
   tags:
     - mpd
@@ -96,12 +96,12 @@
     - mpd
 - name: Enable the Music Player Daemon service on next boot | COMMAND
   ansible.builtin.systemd:
-    enabled: yes
+    enabled: true
     name: mpd
   tags:
     - mpd
 - name: Touch some needed files | TOUCH
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     owner: "{{ mpd_user }}"
     group: "{{ mpd_group }}"

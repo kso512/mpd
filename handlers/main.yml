@@ -7,13 +7,13 @@
   tags:
     - mpd
 - name: Validate systemd configuration files | COMMAND
-  command: "systemd-analyze verify {{ mpd_systemd_service_dest }}"
+  ansible.builtin.command: "systemd-analyze verify {{ mpd_systemd_service_dest }}"
   when: systemd_service_template_output.changed
   tags:
     - mpd
 - name: Reload systemd configuration files | SYSTEMD
-  systemd:
-    daemon_reload: yes
+  ansible.builtin.systemd:
+    daemon_reload: true
   tags:
     - mpd
 - name: Restart the Music Player Daemon service | SERVICE
