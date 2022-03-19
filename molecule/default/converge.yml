@@ -3,6 +3,6 @@
   hosts: all
   tasks:
     - name: "Include mpd"
-      include_role:
+      ansible.builtin.include_role:
         name: "mpd"
 ...
