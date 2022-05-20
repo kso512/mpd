@@ -29,7 +29,7 @@ The following distributions have been tested automatically and continuously inte
 
 | Role Version | MPD Version |
 | ------------ | ----------- |
-| 1.0.7 | 0.23.7 |
+| 1.0.7 - 1.0.8 | 0.23.7 |
 | 1.0.6 | 0.23.6 |
 | 1.0.5 | 0.23.5 |
 | 1.0.4 | 0.23.4 |
