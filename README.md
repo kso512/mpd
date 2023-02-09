@@ -29,7 +29,7 @@ The following distributions have been tested automatically and continuously inte
 
 | Role Version | MPD Version |
 | ------------ | ----------- |
-| 1.0.14 | 0.23.12 |
+| 1.0.14 - 1.0.15 | 0.23.12 |
 | 1.0.13 | 0.23.11 |
 | 1.0.12 | 0.23.10 |
 | 1.0.11 | 0.23.9 |
@@ -54,14 +54,18 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_conf_mode | File mode settings of the MPD configuration file | `"0644"` |
 | mpd_conf_src | Relative or full path name of the MPD configuration file source | `mpd.conf.j2` |
 | mpd_configure_creates | Full path name of the file created when configuring the source of MPD | `"{{ mpd_src }}/output/release/build.ninja"` |
-| mpd_db_file | Full path name of the MPD database file | `"{{ mpd_home }}/database"` |
+| mpd_database_plugin | Type of database plugin to use; see [Database plugins](https://mpd.readthedocs.io/en/stable/plugins.html#database-plugins) for options. | `"simple"` |
+| mpd_database_path | Full path name of the MPD database file | `"{{ mpd_home }}/tag_cache"` |
+| mpd_database_cache_directory | The path of the cache directory for additional storages mounted at runtime | `"{{ mpd_home }}/cache"` |
 | mpd_executable | Full path name of the MPD executable | `"/usr/local/bin/mpd"` |
 | mpd_filename | File name of the MPD archive | `"{{ mpd_shortname }}.tar.xz"` |
 | mpd_group | Group of the user that will own the daemon process | `"{{ mpd_user }}"` |
 | mpd_home | Main directory for the application to run in | `"/home/{{ mpd_user }}"` |
 | mpd_log_file | Full path name of the MPD log file | `"{{ mpd_home }}/log"` |
+| mpd_metadata_to_use | Use only the specified comma-separated tags, and ignore the others; see [Tags](https://mpd.readthedocs.io/en/stable/protocol.html#tags) for a list of supported tags | `"AlbumArtist,Artist,Album,Title,Track,Disc,Genre,Name"` |
 | mpd_mode | File mode settings of the MPD source, music, and playlist folders | `"0755"` |
 | mpd_music_directory | Folder to store music in | `"{{ mpd_home }}/music"` |
+| mpd_neighbors | List of neighbor plugins to enable | (See [NOTE C](https://github.com/kso512/mpd#note-c) below) |
 | mpd_pid_file | Full path name of the MPD PID file | `"{{ mpd_home }}/pid"` |
 | mpd_pip_prereqs | List of PIP packages to install | `"meson>0.56.0"` |
 | mpd_playlist_directory | Folder to store playlists in | `"{{ mpd_home }}/playlist"` |
@@ -154,6 +158,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 - python3
 - python3-pip
 - timidity
+- udisks2
 - unzip
 - xmlto
 
@@ -168,6 +173,15 @@ The default values shown below should work "out-of-the-box" and only need custom
       port: 8000
       bitrate: 128
       format: "44100:16:2"
+      always_on: "yes"
+      tags: "yes"
+
+### NOTE C
+
+`mpd_neighbors` - List of neighbor plugins to enable; see [Configuring Neighbor Plugins](https://mpd.readthedocs.io/en/stable/user.html#configuring-neighbor-plugins) for more information.
+
+- udisks (commented out for Docker/Molecule compatibility)
+- upnp
 
 ## Dependencies
 

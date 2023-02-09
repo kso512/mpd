@@ -25,7 +25,7 @@ playlist_directory		"{{ mpd_playlist_directory }}"
 # MPD to accept files over ipc socket (using file:// protocol) or streaming
 # files over an accepted protocol.
 #
-db_file			"{{ mpd_db_file }}"
+#db_file			"/home/mpd/database"
 #
 # These settings are the locations for the daemon log files for the daemon.
 # These logs are great for troubleshooting, depending on your log_level
@@ -82,7 +82,7 @@ group				"{{ mpd_group }}"
 bind_to_address		"{{ mpd_bind_to_address }}"
 #
 # And for Unix Socket
-#bind_to_address		"~/.mpd/socket"
+#bind_to_address		"/run/mpd/socket"
 #
 # This setting is the TCP port that is desired for the daemon to get assigned
 # to.
@@ -117,7 +117,7 @@ port				"{{ mpd_port }}"
 # This setting defines a list of tag types that will be extracted during the
 # audio file discovery process. The complete list of possible values can be
 # found in the user manual.
-#metadata_to_use	"artist,album,title,track,name,genre,date,composer,performer,disc"
+metadata_to_use		"{{ mpd_metadata_to_use }}"
 #
 # This setting enables automatic update of MPD's database when files in
 # music_directory are changed.
@@ -179,11 +179,18 @@ port				"{{ mpd_port }}"
 # Database #######################################################################
 #
 
-#database {
-#       plugin "proxy"
-#       host "other.mpd.host"
-#       port "6600"
-#}
+database {
+    plugin          "{{ mpd_database_plugin }}"
+    path            "{{ mpd_database_path }}"
+    cache_directory "{{ mpd_database_cache_directory }}"
+}
+
+# Enable neighbor plugins
+{% for mpd_neighbor in mpd_neighbors %}
+neighbors {
+    plugin          "{{ mpd_neighbor }}"
+}
+{% endfor %}
 
 # Input #######################################################################
 #
@@ -274,6 +281,8 @@ audio_output {
 ##	quality		"5.0"			# do not define if bitrate is defined
 	bitrate		"{{ mpd_audio_output.httpd.bitrate }}"			# do not define if quality is defined
 	format		"{{ mpd_audio_output.httpd.format }}"
+	always_on	"{{ mpd_audio_output.httpd.always_on }}"
+	tags		"{{ mpd_audio_output.httpd.tags }}"
 #	max_clients	"0"			# optional 0=no limit
 }
 #

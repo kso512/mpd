@@ -22,9 +22,10 @@
     state: directory
     mode: "{{ mpd_mode }}"
   with_items:
-    - "{{ mpd_src_base }}"
+    - "{{ mpd_database_cache_directory }}"
     - "{{ mpd_music_directory }}"
     - "{{ mpd_playlist_directory }}"
+    - "{{ mpd_src_base }}"
   tags:
     - mpd
 - name: Install APT pre-requisites | APT
@@ -108,7 +109,7 @@
     state: touch
     mode: 0755
   with_items:
-    - "{{ mpd_db_file }}"
+    - "{{ mpd_database_path }}"
     - "{{ mpd_pid_file }}"
     - "{{ mpd_ratings_file }}"
     - "{{ mpd_state_file }}"

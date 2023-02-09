@@ -70,6 +70,7 @@ mpd_apt_prereqs:
   - python3
   - python3-pip
   - timidity
+  - udisks2
   - unzip
   - xmlto
 mpd_audio_output:
@@ -80,6 +81,8 @@ mpd_audio_output:
     port: 8000
     bitrate: 128
     format: "44100:16:2"
+    always_on: "yes"
+    tags: "yes"
 mpd_bind_to_address: "any"
 mpd_comment: "Music Player Daemon"
 mpd_compile_creates: "{{ mpd_src }}/output/release/mpd"
@@ -87,14 +90,20 @@ mpd_conf: "{{ mpd_home }}/mpd.conf"
 mpd_conf_mode: "0644"
 mpd_conf_src: mpd.conf.j2
 mpd_configure_creates: "{{ mpd_src }}/output/release/build.ninja"
-mpd_db_file: "{{ mpd_home }}/database"
+mpd_database_plugin: "simple"
+mpd_database_path: "{{ mpd_home }}/tag_cache"
+mpd_database_cache_directory: "{{ mpd_home }}/cache"
 mpd_executable: "/usr/local/bin/mpd"
 mpd_filename: "{{ mpd_shortname }}.tar.xz"
 mpd_group: "{{ mpd_user }}"
 mpd_home: "/home/{{ mpd_user }}"
 mpd_log_file: "{{ mpd_home }}/log"
+mpd_metadata_to_use: "AlbumArtist,Artist,Album,Title,Track,Disc,Genre,Name"
 mpd_mode: "0755"
 mpd_music_directory: "{{ mpd_home }}/music"
+mpd_neighbors:
+#  - "udisks"
+  - "upnp"
 mpd_pid_file: "{{ mpd_home }}/pid"
 mpd_pip_prereqs: "meson>0.56.0"
 mpd_playlist_directory: "{{ mpd_home }}/playlist"
