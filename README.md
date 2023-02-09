@@ -22,7 +22,6 @@ The following distributions have been tested automatically and continuously inte
 ...using the following technologies:
 
 - [Molecule playbook testing](https://github.com/geerlingguy/molecule-playbook-testing) by [@geerlingguy](https://github.com/geerlingguy)
-- [GitHub Actions](https://github.com/features/actions)
 - [docker-systemctl-replacement](https://github.com/gdraheim/docker-systemctl-replacement) by [@gdraheim](https://github.com/gdraheim)
 
 ## Version Matrix
