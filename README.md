@@ -23,7 +23,7 @@ The following distributions have been tested automatically:
 
 | Role Version/Tag | MPD Version |
 |------------------|-------------|
-| 1.0.16           | [0.23.13](https://www.musicpd.org/news/2023/05/mpd-0-23-13-released/) |
+| 1.0.16 - 1.0.17  | [0.23.13](https://www.musicpd.org/news/2023/05/mpd-0-23-13-released/) |
 | 1.0.14 - 1.0.15  | 0.23.12     |
 | 1.0.13           | 0.23.11     |
 | 1.0.12           | 0.23.10     |
