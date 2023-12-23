@@ -18,16 +18,17 @@ The following distributions have been tested automatically:
 
 - [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
 - [Debian 11 "Bullseye"](https://www.debian.org/releases/bullseye/)
+- [Debian 12 "Bookworm"](https://www.debian.org/releases/bookworm/)
 
 ## Version Matrix
 
 | Role Version/Tag | MPD Version |
 |------------------|-------------|
+| 1.0.18           | [0.23.14](https://www.musicpd.org/news/2023/10/mpd-0-23-14-released/) |
 | 1.0.16 - 1.0.17  | [0.23.13](https://www.musicpd.org/news/2023/05/mpd-0-23-13-released/) |
 | 1.0.14 - 1.0.15  | 0.23.12     |
 | 1.0.13           | 0.23.11     |
 | 1.0.12           | 0.23.10     |
-| 1.0.11           | 0.23.9      |
 
 ## Requirements
 
@@ -65,7 +66,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_playlist_directory | Folder to store playlists in | `"{{ mpd_home }}/playlist"` |
 | mpd_port | TCP port to bind the control interface to | `"6600"` |
 | mpd_ratings_file | Full path name of the MPD ratings file | `"{{ mpd_home }}/ratings.db"` |
-| mpd_shortname | Short name of the MPD archive | `"mpd-0.23.13"` |
+| mpd_shortname | Short name of the MPD archive | `"mpd-0.23.14"` |
 | mpd_src | Directory to unarchive the source code in | `"{{ mpd_src_base }}/{{ mpd_shortname }}"` |
 | mpd_src_base | Directory to place the source code archive in | `"{{ mpd_home }}/src"` |
 | mpd_state_file | Full path name of the MPD state file | `"{{ mpd_home }}/state"` |
@@ -83,78 +84,64 @@ The default values shown below should work "out-of-the-box" and only need custom
 
 `mpd_apt_prereqs` - List of APT packages to install:
 
-- cmake
+- meson
 - g++
-- iproute2
-- libadplug-dev
-- libao-dev
-- libasound2-dev
-- libaudio-mpd-perl
-- libaudiofile-dev
-- libavahi-client-dev
-- libavcodec-dev
-- libavformat-dev
-- libboost-dev
-- libbz2-dev
-- libcdio-paranoia-dev
-- libchromaprint-dev
-- libcppunit-dev
-- libcurl4-gnutls-dev
-- libexpat-dev
-- libfaad-dev
-- libflac-dev
-- libfluidsynth-dev
 - libfmt-dev
-- libgcrypt20-dev
-- libgme-dev
-- libgtest-dev
-- libicu-dev
-- libid3tag0-dev
-- libiso9660-dev
-- libjack-jackd2-dev
+- libpcre2-dev
 - libmad0-dev
-- libmikmod-dev
-- libmms-dev
-- libmodplug-dev
-- libmp3lame-dev
-- libmpcdec-dev
-- libmpdclient-dev
 - libmpg123-dev
-- libnfs-dev
-- libogg-dev
-- libopenal-dev
-- libopus-dev
-- libpcre3-dev
-- libpulse-dev
-- libresid-builder-dev
-- libroar-dev
-- libsamplerate0-dev
-- libshine-dev
-- libshout3-dev
-- libsidplay2-dev
-- libsidutils-dev
-- libsmbclient
-- libsmbclient-dev
-- libsndfile1-dev
-- libsndio-dev
-- libsoxr-dev
-- libsqlite3-dev
-- libsystemd-dev
-- libtwolame-dev
-- libupnp-dev
+- libid3tag0-dev
+- libflac-dev
 - libvorbis-dev
+- libopus-dev
+- libogg-dev
+- libadplug-dev
+- libaudiofile-dev
+- libsndfile1-dev
+- libfaad-dev
+- libfluidsynth-dev
+- libgme-dev
+- libmikmod-dev
+- libmodplug-dev
+- libmpcdec-dev
 - libwavpack-dev
 - libwildmidi-dev
-- libwrap0-dev
-- libyajl-dev
+- libsidplay2-dev
+- libsidutils-dev
+- libresid-builder-dev
+- libavcodec-dev
+- libavformat-dev
+- libmp3lame-dev
+- libtwolame-dev
+- libshine-dev
+- libsamplerate0-dev
+- libsoxr-dev
+- libbz2-dev
+- libcdio-paranoia-dev
+- libiso9660-dev
+- libmms-dev
 - libzzip-dev
-- ninja-build
-- python3
-- python3-pip
-- timidity
-- udisks2
-- unzip
-- xmlto
+- libcurl4-gnutls-dev
+- libyajl-dev
+- libexpat-dev
+- libasound2-dev
+- libao-dev
+- libjack-jackd2-dev
+- libopenal-dev
+- libpulse-dev
+- libshout3-dev
+- libsndio-dev
+- libmpdclient-dev
+- libnfs-dev
+- libupnp-dev
+- libavahi-client-dev
+- libsqlite3-dev
+- libsystemd-dev
+- libgtest-dev
+- libboost-dev
+- libicu-dev
+- libchromaprint-dev
+- libgcrypt20-dev
 
 ### NOTE B
 

@@ -35,12 +35,6 @@
     state: present
   tags:
     - mpd
-- name: Install PIP pre-requisites | PIP
-  ansible.builtin.pip:
-    name: "{{ mpd_pip_prereqs }}"
-    state: present
-  tags:
-    - mpd
 - name: Download and extract tar package | UNARCHIVE
   ansible.builtin.unarchive:
     remote_src: yes
@@ -52,7 +46,7 @@
   tags:
     - mpd
 - name: Configure source before compiling | COMMAND
-  ansible.builtin.command: "meson . output/release --buildtype=debugoptimized -Db_ndebug=true"
+  ansible.builtin.command: "meson setup . output/release --buildtype=debugoptimized -Db_ndebug=true"
   args:
     chdir: "{{ mpd_src }}"
     creates: "{{ mpd_configure_creates }}"
