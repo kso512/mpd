@@ -1,8 +1,6 @@
 # [mpd](https://galaxy.ansible.com/kso512/mpd/)
 
-[![Ansible role quality](https://img.shields.io/ansible/quality/56402)](https://galaxy.ansible.com/kso512/mpd) [![Ansible role downloads](https://img.shields.io/ansible/role/d/56402)](https://galaxy.ansible.com/kso512/mpd) [![GitHub repo size](https://img.shields.io/github/repo-size/kso512/mpd)](https://github.com/kso512/mpd)
-
-[![Release](https://github.com/kso512/mpd/actions/workflows/release.yml/badge.svg)](https://github.com/kso512/mpd/actions/workflows/release.yml) [![GitHub issues](https://img.shields.io/github/issues-raw/kso512/mpd)](https://github.com/kso512/mpd)
+[![Release](https://github.com/kso512/mpd/actions/workflows/release.yml/badge.svg)](https://github.com/kso512/mpd/actions/workflows/release.yml) [![GitHub issues](https://img.shields.io/github/issues-raw/kso512/mpd)](https://github.com/kso512/mpd) [![GitHub repo size](https://img.shields.io/github/repo-size/kso512/mpd)](https://github.com/kso512/mpd)
 
 [![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/) [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org) [![GitHub](https://img.shields.io/github/license/kso512/mpd)](https://www.gnu.org/licenses/gpl-2.0.txt)
 
@@ -24,11 +22,11 @@ The following distributions have been tested automatically:
 
 | Role Version/Tag | MPD Version |
 |------------------|-------------|
+| 1.0.19           | [0.23.15](https://www.musicpd.org/news/2023/12/mpd-0-23-15-released/) |
 | 1.0.18           | [0.23.14](https://www.musicpd.org/news/2023/10/mpd-0-23-14-released/) |
 | 1.0.16 - 1.0.17  | [0.23.13](https://www.musicpd.org/news/2023/05/mpd-0-23-13-released/) |
 | 1.0.14 - 1.0.15  | 0.23.12     |
 | 1.0.13           | 0.23.11     |
-| 1.0.12           | 0.23.10     |
 
 ## Requirements
 
@@ -66,7 +64,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_playlist_directory | Folder to store playlists in | `"{{ mpd_home }}/playlist"` |
 | mpd_port | TCP port to bind the control interface to | `"6600"` |
 | mpd_ratings_file | Full path name of the MPD ratings file | `"{{ mpd_home }}/ratings.db"` |
-| mpd_shortname | Short name of the MPD archive | `"mpd-0.23.14"` |
+| mpd_shortname | Short name of the MPD archive | `"mpd-0.23.15"` |
 | mpd_src | Directory to unarchive the source code in | `"{{ mpd_src_base }}/{{ mpd_shortname }}"` |
 | mpd_src_base | Directory to place the source code archive in | `"{{ mpd_home }}/src"` |
 | mpd_state_file | Full path name of the MPD state file | `"{{ mpd_home }}/state"` |
@@ -161,7 +159,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 
 `mpd_neighbors` - List of neighbor plugins to enable; see [Configuring Neighbor Plugins](https://mpd.readthedocs.io/en/stable/user.html#configuring-neighbor-plugins) for more information.
 
-- udisks (commented out for Docker/Molecule compatibility)
+- udisks
 - upnp
 
 ## Dependencies
