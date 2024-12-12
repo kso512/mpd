@@ -40,7 +40,7 @@ mpd_apt_prereqs:
   - libzzip-dev
   - libcurl4-gnutls-dev
   - libyajl-dev
-  - libexpat-dev
+  - libexpat1-dev
   - libasound2-dev
   - libao-dev
   - libjack-jackd2-dev
@@ -55,10 +55,10 @@ mpd_apt_prereqs:
   - libsqlite3-dev
   - libsystemd-dev
   - libgtest-dev
-  - libboost-dev
   - libicu-dev
   - libchromaprint-dev
   - libgcrypt20-dev
+  - libpipewire-0.3-dev
 mpd_audio_output:
   httpd:
     type: httpd
@@ -94,7 +94,7 @@ mpd_pid_file: "{{ mpd_home }}/pid"
 mpd_playlist_directory: "{{ mpd_home }}/playlist"
 mpd_port: "6600"
 mpd_ratings_file: "{{ mpd_home }}/ratings.db"
-mpd_shortname: "mpd-0.23.15"
+mpd_shortname: "mpd-0.23.16"
 mpd_src: "{{ mpd_src_base }}/{{ mpd_shortname }}"
 mpd_src_base: "{{ mpd_home }}/src"
 mpd_state_file: "{{ mpd_home }}/state"

@@ -9,8 +9,7 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - bullseye
-        - buster
+        - bookworm
   galaxy_tags:
     - mpd
     - musicpd

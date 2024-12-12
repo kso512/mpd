@@ -14,19 +14,17 @@ All tasks are tagged with `mpd`.
 
 The following distributions have been tested automatically:
 
-- [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
-- [Debian 11 "Bullseye"](https://www.debian.org/releases/bullseye/)
 - [Debian 12 "Bookworm"](https://www.debian.org/releases/bookworm/)
 
 ## Version Matrix
 
 | Role Version/Tag | MPD Version |
 |------------------|-------------|
+| 1.0.20           | [0.23.16](https://www.musicpd.org/news/2024/12/mpd-0-23-16-released/) |
 | 1.0.19           | [0.23.15](https://www.musicpd.org/news/2023/12/mpd-0-23-15-released/) |
 | 1.0.18           | [0.23.14](https://www.musicpd.org/news/2023/10/mpd-0-23-14-released/) |
 | 1.0.16 - 1.0.17  | [0.23.13](https://www.musicpd.org/news/2023/05/mpd-0-23-13-released/) |
 | 1.0.14 - 1.0.15  | 0.23.12     |
-| 1.0.13           | 0.23.11     |
 
 ## Requirements
 
@@ -64,7 +62,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_playlist_directory | Folder to store playlists in | `"{{ mpd_home }}/playlist"` |
 | mpd_port | TCP port to bind the control interface to | `"6600"` |
 | mpd_ratings_file | Full path name of the MPD ratings file | `"{{ mpd_home }}/ratings.db"` |
-| mpd_shortname | Short name of the MPD archive | `"mpd-0.23.15"` |
+| mpd_shortname | Short name of the MPD archive | `"mpd-0.23.16"` |
 | mpd_src | Directory to unarchive the source code in | `"{{ mpd_src_base }}/{{ mpd_shortname }}"` |
 | mpd_src_base | Directory to place the source code archive in | `"{{ mpd_home }}/src"` |
 | mpd_state_file | Full path name of the MPD state file | `"{{ mpd_home }}/state"` |
@@ -121,7 +119,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 - libzzip-dev
 - libcurl4-gnutls-dev
 - libyajl-dev
-- libexpat-dev
+- libexpat1-dev
 - libasound2-dev
 - libao-dev
 - libjack-jackd2-dev
@@ -136,10 +134,10 @@ The default values shown below should work "out-of-the-box" and only need custom
 - libsqlite3-dev
 - libsystemd-dev
 - libgtest-dev
-- libboost-dev
 - libicu-dev
 - libchromaprint-dev
 - libgcrypt20-dev
+- libpipewire-0.3-dev
 
 ### NOTE B
 
