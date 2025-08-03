@@ -18,13 +18,13 @@ The following distributions have been tested automatically:
 
 ## Version Matrix
 
-| Role Version/Tag | MPD Version |
-|------------------|-------------|
+| Role Version/Tag | MPD Version                                                           |
+|------------------|-----------------------------------------------------------------------|
+| 1.0.22           | [0.24.4](https://www.musicpd.org/news/2025/05/mpd-0-24-4-released/)   |
 | 1.0.21           | [0.23.17](https://www.musicpd.org/news/2025/01/mpd-0-23-17-released/) |
 | 1.0.20           | [0.23.16](https://www.musicpd.org/news/2024/12/mpd-0-23-16-released/) |
 | 1.0.19           | [0.23.15](https://www.musicpd.org/news/2023/12/mpd-0-23-15-released/) |
 | 1.0.18           | [0.23.14](https://www.musicpd.org/news/2023/10/mpd-0-23-14-released/) |
-| 1.0.16 - 1.0.17  | [0.23.13](https://www.musicpd.org/news/2023/05/mpd-0-23-13-released/) |
 
 ## Requirements
 
@@ -62,7 +62,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_playlist_directory | Folder to store playlists in | `"{{ mpd_home }}/playlist"` |
 | mpd_port | TCP port to bind the control interface to | `"6600"` |
 | mpd_ratings_file | Full path name of the MPD ratings file | `"{{ mpd_home }}/ratings.db"` |
-| mpd_shortname | Short name of the MPD archive | `"mpd-0.23.17"` |
+| mpd_shortname | Short name of the MPD archive | `"mpd-0.24.4"` |
 | mpd_src | Directory to unarchive the source code in | `"{{ mpd_src_base }}/{{ mpd_shortname }}"` |
 | mpd_src_base | Directory to place the source code archive in | `"{{ mpd_home }}/src"` |
 | mpd_state_file | Full path name of the MPD state file | `"{{ mpd_home }}/state"` |
@@ -73,7 +73,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_systemd_service_mode | File mode settings of the systemd unit file | `"0644"` |
 | mpd_systemd_service_src | Relative or full path name of the MPD systemd service unit file source | `"systemd.mpd.service.j2"` |
 | mpd_url | Full URL to download the source code archive | `"{{ mpd_url_base }}/{{ mpd_filename }}"` |
-| mpd_url_base | Base of the URL to download the source code archive | `"http://www.musicpd.org/download/mpd/0.23"` |
+| mpd_url_base | Base of the URL to download the source code archive | `"http://www.musicpd.org/download/mpd/0.24"` |
 | mpd_user | Name of the user that will own the daemon process | `"mpd"` |
 
 ### NOTE A
@@ -138,6 +138,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 - libchromaprint-dev
 - libgcrypt20-dev
 - libpipewire-0.3-dev
+- libboost-dev
 
 ### NOTE B
 
@@ -171,6 +172,29 @@ Configure each MPD server with a customized local mpd.conf:
     - hosts: music-servers
       roles:
         - { role: kso512.mpd, mpd_conf_src: local/mpd.conf.j2 }
+
+## Testing
+
+Tested using these commands:
+
+    $ docker exec --tty $(docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw --cgroupns=host --volume=$(pwd):/etc/ansible/roles/role_under_test:ro geerlingguy/docker-debian12-ansible:latest) env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/test/test.yml
+    PLAY [Run role under test] *****************************************************************
+    
+    TASK [Gathering Facts] *********************************************************************
+    ok: [localhost]
+    
+    TASK [role_under_test : Make group for Music Player Daemon user | GROUP] *******************
+    changed: [localhost]
+
+%<-- snip -->%
+
+    RUNNING HANDLER [role_under_test : Restart the Music Player Daemon service | SERVICE] ******
+    changed: [localhost]
+    
+    PLAY RECAP *********************************************************************************
+    localhost                  : ok=16   changed=13   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+Based on [Jeff Geerling's](https://github.com/geerlingguy) [awesome work](https://hub.docker.com/r/geerlingguy/docker-debian12-ansible).
 
 ## License
 

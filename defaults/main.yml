@@ -59,6 +59,7 @@ mpd_apt_prereqs:
   - libchromaprint-dev
   - libgcrypt20-dev
   - libpipewire-0.3-dev
+  - libboost-dev
 mpd_audio_output:
   httpd:
     type: httpd
@@ -94,7 +95,7 @@ mpd_pid_file: "{{ mpd_home }}/pid"
 mpd_playlist_directory: "{{ mpd_home }}/playlist"
 mpd_port: "6600"
 mpd_ratings_file: "{{ mpd_home }}/ratings.db"
-mpd_shortname: "mpd-0.23.17"
+mpd_shortname: "mpd-0.24.4"
 mpd_src: "{{ mpd_src_base }}/{{ mpd_shortname }}"
 mpd_src_base: "{{ mpd_home }}/src"
 mpd_state_file: "{{ mpd_home }}/state"
@@ -105,6 +106,6 @@ mpd_systemd_service_owner: "root"
 mpd_systemd_service_mode: "0644"
 mpd_systemd_service_src: "systemd.mpd.service.j2"
 mpd_url: "{{ mpd_url_base }}/{{ mpd_filename }}"
-mpd_url_base: "http://www.musicpd.org/download/mpd/0.23"
+mpd_url_base: "http://www.musicpd.org/download/mpd/0.24"
 mpd_user: "mpd"
 ...
