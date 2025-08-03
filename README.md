@@ -20,11 +20,11 @@ The following distributions have been tested automatically:
 
 | Role Version/Tag | MPD Version                                                           |
 |------------------|-----------------------------------------------------------------------|
+| 1.0.23           | [0.24.5](https://www.musicpd.org/news/2025/07/mpd-0-24-5-released/)   |
 | 1.0.22           | [0.24.4](https://www.musicpd.org/news/2025/05/mpd-0-24-4-released/)   |
 | 1.0.21           | [0.23.17](https://www.musicpd.org/news/2025/01/mpd-0-23-17-released/) |
 | 1.0.20           | [0.23.16](https://www.musicpd.org/news/2024/12/mpd-0-23-16-released/) |
 | 1.0.19           | [0.23.15](https://www.musicpd.org/news/2023/12/mpd-0-23-15-released/) |
-| 1.0.18           | [0.23.14](https://www.musicpd.org/news/2023/10/mpd-0-23-14-released/) |
 
 ## Requirements
 
@@ -62,7 +62,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_playlist_directory | Folder to store playlists in | `"{{ mpd_home }}/playlist"` |
 | mpd_port | TCP port to bind the control interface to | `"6600"` |
 | mpd_ratings_file | Full path name of the MPD ratings file | `"{{ mpd_home }}/ratings.db"` |
-| mpd_shortname | Short name of the MPD archive | `"mpd-0.24.4"` |
+| mpd_shortname | Short name of the MPD archive | `"mpd-0.24.5"` |
 | mpd_src | Directory to unarchive the source code in | `"{{ mpd_src_base }}/{{ mpd_shortname }}"` |
 | mpd_src_base | Directory to place the source code archive in | `"{{ mpd_home }}/src"` |
 | mpd_state_file | Full path name of the MPD state file | `"{{ mpd_home }}/state"` |
