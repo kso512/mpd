@@ -15,16 +15,17 @@ All tasks are tagged with `mpd`.
 The following distributions have been tested automatically:
 
 - [Debian 12 "Bookworm"](https://www.debian.org/releases/bookworm/)
+- [Debian 13 "Trixie"](https://www.debian.org/releases/trixie/)
 
 ## Version Matrix
 
 | Role Version/Tag | MPD Version                                                           |
 |------------------|-----------------------------------------------------------------------|
+| 1.0.24           | [0.24.6](https://www.musicpd.org/news/2025/10/mpd-0-24-6-released/)   |
 | 1.0.23           | [0.24.5](https://www.musicpd.org/news/2025/07/mpd-0-24-5-released/)   |
 | 1.0.22           | [0.24.4](https://www.musicpd.org/news/2025/05/mpd-0-24-4-released/)   |
 | 1.0.21           | [0.23.17](https://www.musicpd.org/news/2025/01/mpd-0-23-17-released/) |
 | 1.0.20           | [0.23.16](https://www.musicpd.org/news/2024/12/mpd-0-23-16-released/) |
-| 1.0.19           | [0.23.15](https://www.musicpd.org/news/2023/12/mpd-0-23-15-released/) |
 
 ## Requirements
 
@@ -62,7 +63,7 @@ The default values shown below should work "out-of-the-box" and only need custom
 | mpd_playlist_directory | Folder to store playlists in | `"{{ mpd_home }}/playlist"` |
 | mpd_port | TCP port to bind the control interface to | `"6600"` |
 | mpd_ratings_file | Full path name of the MPD ratings file | `"{{ mpd_home }}/ratings.db"` |
-| mpd_shortname | Short name of the MPD archive | `"mpd-0.24.5"` |
+| mpd_shortname | Short name of the MPD archive | `"mpd-0.24.6"` |
 | mpd_src | Directory to unarchive the source code in | `"{{ mpd_src_base }}/{{ mpd_shortname }}"` |
 | mpd_src_base | Directory to place the source code archive in | `"{{ mpd_home }}/src"` |
 | mpd_state_file | Full path name of the MPD state file | `"{{ mpd_home }}/state"` |
@@ -175,24 +176,26 @@ Configure each MPD server with a customized local mpd.conf:
 
 ## Testing
 
-Tested using these commands:
+Tested using the included `test_all_distros.sh` command, ran from the main role directory:
 
-    $ docker exec --tty $(docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw --cgroupns=host --volume=$(pwd):/etc/ansible/roles/role_under_test:ro geerlingguy/docker-debian12-ansible:latest) env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/test/test.yml
-    PLAY [Run role under test] *****************************************************************
+    $ ./test/test_all_distros.sh
+    --- Running container for distro: debian11
+    --- Testing role in distro: debian11
     
-    TASK [Gathering Facts] *********************************************************************
+    PLAY [Run role under test] *******************************************************************************************************************************************************************
+    
+    TASK [Gathering Facts] ***********************************************************************************************************************************************************************
     ok: [localhost]
-    
-    TASK [role_under_test : Make group for Music Player Daemon user | GROUP] *******************
-    changed: [localhost]
 
 %<-- snip -->%
 
-    RUNNING HANDLER [role_under_test : Restart the Music Player Daemon service | SERVICE] ******
+    TASK [role_under_test : Start and enable Apache2 | SERVICE] **********************************************************************************************************************************
     changed: [localhost]
     
-    PLAY RECAP *********************************************************************************
-    localhost                  : ok=16   changed=13   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    PLAY RECAP ***********************************************************************************************************************************************************************************
+    localhost                  : ok=11   changed=8    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+    
+    --- Removing container for distro: ubuntu2404
 
 Based on [Jeff Geerling's](https://github.com/geerlingguy) [awesome work](https://hub.docker.com/r/geerlingguy/docker-debian12-ansible).
 
